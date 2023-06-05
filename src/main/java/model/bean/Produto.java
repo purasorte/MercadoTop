@@ -1,8 +1,10 @@
 
 package model.bean;
 
-
-
+/**
+ *
+ * @author luizj
+ */
 public class Produto {
     
     private int id;

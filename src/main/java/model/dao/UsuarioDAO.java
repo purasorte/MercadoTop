@@ -1,5 +1,9 @@
 package model.dao;
 
+/**
+ *
+ * @author luizj
+ */
 import com.luiz.mercadotop.util.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,6 +1,10 @@
 
 package com.luiz.mercadotop.util;
 
+/**
+ *
+ * @author luizj
+ */
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

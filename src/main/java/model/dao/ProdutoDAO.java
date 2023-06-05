@@ -1,6 +1,9 @@
 
 package model.dao;
-
+/*
+@author luizj
+*/
+import Event.EventManager;
 import com.luiz.mercadotop.util.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,9 +17,11 @@ import javax.swing.JOptionPane;
 import model.bean.Produto;
 
 
-public class ProdutoDAO {
+public class ProdutoDAO implements ProdutosDAO {
+    
+    public EventManager events;
 
-    public boolean create(Produto p) {
+    public void create(Produto p) {
         
         Connection con = ConnectionFactory.getConnection();
         
@@ -31,15 +36,15 @@ public class ProdutoDAO {
             stmt.executeUpdate();
 
             //JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
-            return true;
+            
         } catch (SQLException ex) {
             // System.out.println(ex);
             // throw new Exception(ex.getMessage());
         } finally {
             ConnectionFactory.closeConnection(con, stmt);
         }
-        
-        return false;
+        events.notify("inserir");
+       
     }
 
     public List<Produto> read() {
@@ -158,4 +163,16 @@ public class ProdutoDAO {
 
     }
 
+    
+    public ProdutoDAO() {
+        this.events = new EventManager("inserir", "atualizar");
+    }
+    
+    public void inserir() {
+        events.notify("inserir");
+    }
+    
+    public void atualizar() {
+        events.notify("atualizar");
+    }
 }
